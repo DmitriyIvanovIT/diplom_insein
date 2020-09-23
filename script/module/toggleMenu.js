@@ -16,7 +16,6 @@ const toggleMenu = () => {
    menu.addEventListener('click', openMenu);
    popupMenu.addEventListener('click', event => {
       const target = event.target;
-      console.log(target);
 
       if (target === popupMenu ||
          target.closest('.close-menu')) {
