@@ -6,6 +6,6 @@
     opacity: 1;
 }
 
-.header-contacts__arrow.active {
+.header-contacts__arrow.active img {
     transform: rotate(180deg);
 }
