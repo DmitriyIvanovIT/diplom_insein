@@ -3,12 +3,6 @@ const toggleMenu = () => {
       popupMenu = document.querySelector('.popup-menu'),
       popupDialogMenu = popupMenu.querySelector('.popup-dialog-menu');
 
-   if (window.screen.width < 576) {
-      popupDialogMenu.style.transform = 'translate3d(0,-874px,0)';
-   } else {
-      popupDialogMenu.style.transform = '';
-   }
-
    const openMenu = () => {
          popupMenu.style.visibility = 'visible';
          popupDialogMenu.style.transform = 'translate3d(0,0,0)';
@@ -16,11 +10,7 @@ const toggleMenu = () => {
       },
       closeMenu = () => {
          popupMenu.style.visibility = '';
-         if (window.screen.width < 576) {
-            popupDialogMenu.style.transform = 'translate3d(0,-874px,0)';
-         } else {
-            popupDialogMenu.style.transform = '';
-         }
+         popupDialogMenu.style.transform = '';
       };
 
    menu.addEventListener('click', openMenu);
