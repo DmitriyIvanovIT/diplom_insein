@@ -13,3 +13,49 @@
 .nav-list-popup-repair {
     transition: 0s !important;
 }
+
+.formula-item {
+    z-index: 2 !important;
+}
+
+.formula-item-popup {
+    z-index: 3;
+}
+
+.formula-item-popup::before {
+    z-index: 4 !important;
+}
+
+.formula-item-popup .popup__text {
+    display: inline-block;
+    margin: 0;
+    padding: 20px 40px 0 40px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 25px;
+    font-size: 19px;
+    text-align: justify;
+    z-index: 5;
+}
+
+.formula-item-popup.rotate {
+    padding-top: 40px;
+    visibility: visible;
+    opacity: 1;
+}
+
+.formula-item-popup.rotate:before {
+    transform: rotate(180deg);
+}
+
+.formula-item-popup.rotate .popup__text {
+    padding-top: 40px;
+}
+
+.formula-item.primary {
+    z-index: 3 !important;
+}
+
+.formula-item__icon:hover .formula-item__icon-inner {
+    opacity: 1;
+}

@@ -4,6 +4,7 @@ import togglePopupRepair from './module/togglePopupRepair.js';
 import validPhone from './module/validPhone.js';
 import sendForm from './module/sendForm.js';
 import togglePopupPtivacy from './module/togglePopupPtivacy.js';
+import showLater from './module/showLater.js';
 
 openPhone();
 toggleMenu();
@@ -12,3 +13,4 @@ togglePopupRepair();
 validPhone('[name="phone"]');
 sendForm();
 togglePopupPtivacy();
+showLater();
