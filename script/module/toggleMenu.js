@@ -44,7 +44,8 @@ const toggleMenu = () => {
       const target = event.target;
 
       if (target === popupMenu ||
-         target.closest('.close-menu')) {
+         target.closest('.close-menu') ||
+         target.closest('.link-list.link-list-menu.mobile-hide')) {
             closeMenu();
          }
    });

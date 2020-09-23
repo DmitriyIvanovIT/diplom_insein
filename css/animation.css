@@ -9,3 +9,7 @@
 .header-contacts__arrow.active img {
     transform: rotate(180deg);
 }
+
+.nav-list-popup-repair {
+    transition: 0s !important;
+}
