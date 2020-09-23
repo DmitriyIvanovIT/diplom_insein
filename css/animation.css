@@ -1,0 +1,11 @@
+.header-contacts__phone-number-accord.active {
+    top: 30px; 
+}
+
+.header-contacts__phone-number-accord.active a {
+    opacity: 1;
+}
+
+.header-contacts__arrow.active {
+    transform: rotate(180deg);
+}
