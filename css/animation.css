@@ -1,5 +1,5 @@
 .header-contacts__phone-number-accord.active {
-    top: 30px; 
+    top: 30px;
 }
 
 .header-contacts__phone-number-accord.active a {
@@ -14,19 +14,19 @@
     transition: 0s !important;
 }
 
-.formula-item {
+.tablet-hide .formula-item {
     z-index: 2 !important;
 }
 
-.formula-item-popup {
+.tablet-hide .formula-item-popup {
     z-index: 3;
 }
 
-.formula-item-popup::before {
+.tablet-hide .formula-item-popup::before {
     z-index: 4 !important;
 }
 
-.formula-item-popup .popup__text {
+.tablet-hide .formula-item-popup .popup__text {
     display: inline-block;
     margin: 0;
     padding: 20px 40px 0 40px;
@@ -38,24 +38,92 @@
     z-index: 5;
 }
 
-.formula-item-popup.rotate {
+.tablet-hide .formula-item-popup.rotate {
     padding-top: 40px;
     visibility: visible;
     opacity: 1;
 }
 
-.formula-item-popup.rotate:before {
+.tablet-hide .formula-item-popup.rotate:before {
     transform: rotate(180deg);
 }
 
-.formula-item-popup.rotate .popup__text {
+.tablet-hide .formula-item-popup.rotate .popup__text {
     padding-top: 40px;
 }
 
-.formula-item.primary {
+.tablet-hide .formula-item.primary {
     z-index: 3 !important;
 }
 
-.formula-item__icon:hover .formula-item__icon-inner {
+.tablet-hide .formula-item__icon:hover .formula-item__icon-inner {
     opacity: 1;
+}
+
+.formula-slider-wrap {
+    position: relative;
+    overflow: hidden;
+    min-height: 450px;
+}
+
+.formula-slider {
+    display: flex;
+    margin-top: -20px !important;
+
+    min-height: 410px !important;
+}
+
+.formula-item.formula-slider__slide {
+    flex:0 0 33% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: auto 0 !important;
+    top: -19px;
+}
+
+.formula-item.formula-slider__slide.active {
+    opacity: 1;
+}
+
+.formula-item.formula-slider__slide.active .formula-item__icon-inner {
+    background: linear-gradient(90deg,#f48922 0,#ffb015 100%);
+}
+
+.formula-item.formula-slider__slide.active .formula-item-popup {
+    visibility: visible;
+    opacity: 1;
+    top: 118px;
+}
+
+.formula-slider .formula-item-popup-05 {
+    min-height: 225px;
+}
+
+#formula-arrow_left {
+    left: 0 !important;
+}
+
+#formula-arrow_right {
+    right: 0 !important;
+}
+
+@media (max-width: 564px) {
+    .formula-slider {
+        transform: translateX(-100%);
+    }
+
+    .formula-item.formula-slider__slide {
+        flex:0 0 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: auto 0 !important;
+        top: -19px;
+    }
+
+
+    .formula-slider .formula-item-popup-05:before {
+        top: -61px;
+    }
 }
