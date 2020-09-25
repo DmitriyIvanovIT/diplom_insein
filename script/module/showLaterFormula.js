@@ -1,4 +1,4 @@
-const showLater = () => {
+const showLaterFormula = () => {
     const formulaItemPopup = document.querySelectorAll('.formula-item-popup');
 
     const clearStyle = () => {
@@ -32,4 +32,4 @@ const showLater = () => {
     });
 };
 
-export default showLater;
+export default showLaterFormula;
