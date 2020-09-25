@@ -7,6 +7,7 @@ import togglePopupPtivacy from './module/togglePopupPtivacy.js';
 import showLater from './module/showLater.js';
 import sliderFormula from './module/sliderFormula.js';
 import repairSlider from './module/repairSlider.js';
+import sliderPortfolio from './module/sliderPortfolio.js';
 
 openPhone();
 toggleMenu();
@@ -18,8 +19,10 @@ togglePopupPtivacy();
 showLater();
 sliderFormula();
 repairSlider();
+sliderPortfolio();
 
 window.addEventListener('resize', () => {
     toggleMenu();
     repairSlider();
+    sliderPortfolio();
 });

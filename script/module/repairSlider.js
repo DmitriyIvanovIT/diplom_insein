@@ -75,8 +75,6 @@ const repairSlider = () => {
             maxDrive += (item.offsetWidth + 10);
         });
 
-        console.log(maxDrive);
-
         const drivesSlide = () => {
             navItem.forEach((item, i) => {
                 if (i === count) {

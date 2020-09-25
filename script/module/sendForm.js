@@ -1,7 +1,7 @@
 const sendForm = () => {
     const forms = document.querySelectorAll('form');
 
-    const postData = body => fetch('./server.php', {
+    const postData = async body => await fetch('./server.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -15,19 +15,23 @@ const sendForm = () => {
         form.addEventListener('submit', event => {
             event.preventDefault();
             const formData = new FormData(form),
-            body = {};
+                body = {};
 
             formData.forEach((item, key) => body[key] = item);
-            
-            if (checkbox.checked) {
+        
+
+            if (!check) {
+                console.log('no');
+                alert('Требуется сщглашение с политикой конфиденциальности');
+            } else {
                 postData(body)
-                .then(response => {
-                    if (response.status !== 200) {
-                        throw new Error(`status network ${response.status}!`);
-                    }
-                    form.reset();
-                })
-                .catch(error => console.error(error));
+                    .then(response => {
+                        if (response.status !== 200) {
+                            throw new Error(`status network ${response.status}!`);
+                        }
+                        form.reset();
+                    })
+                    .catch(error => console.error(error));
             }
         });
     });
