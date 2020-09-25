@@ -42,7 +42,9 @@ const documents = () => {
                 popupTransparencySlider = document.querySelectorAll('.popup-transparency-slider__slide'),
                 transparencyPopupCounter = document.getElementById('transparency-popup-counter'),
                 sliderCurrent = transparencyPopupCounter.querySelector('.slider-counter-content__current'),
-                sliderTotal = transparencyPopupCounter.querySelector('.slider-counter-content__total');
+                sliderTotal = transparencyPopupCounter.querySelector('.slider-counter-content__total'),
+                prevButton = document.querySelector('.popup-arrow_transparency_left'),
+                nextButton = document.querySelector('.popup-arrow_transparency_right');
 
             let maxCount = popupTransparencySlider.length - 1,
                 slideHeight = popupTransparencySlider[0].offsetHeight;
@@ -51,7 +53,7 @@ const documents = () => {
 
             const showSlide = index => {
                 let count = index;
-                console.log(count);
+                popupTransparencySlider.forEach(slide => slide.style.transform = '');
 
                 const changeSlide = () => {
                     popupTransparencySlider.forEach(slide => slide.style.transform = `translateY(-${count * slideHeight}px)`);
@@ -60,20 +62,19 @@ const documents = () => {
 
                 changeSlide();
 
-                document.body.addEventListener('click', event => {
-                    const target = event.target;
-                    if (target.closest('.popup-arrow_transparency_left')) {
-                        count--;
-                        if (count < 0) {
-                            count = maxCount;
-                        }
-                    } else if (target.closest('.popup-arrow_transparency_right')) {
-                        count++;
-                        if (count > maxCount) {
-                            count = 0;
-                        }
+                nextButton.addEventListener('click', () => {
+                    count++;
+                    if (count > maxCount) {
+                        count = 0;
                     }
+                    changeSlide();
+                });
 
+                prevButton.addEventListener('click', () => {
+                    count--;
+                    if (count < 0) {
+                        count = maxCount;
+                    }
                     changeSlide();
                 });
             };

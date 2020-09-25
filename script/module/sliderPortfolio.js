@@ -153,7 +153,7 @@ const sliderPortfolio = () => {
 
                     slides.forEach((slide, i) => {
                         if (slide === target) {
-                            openSlideInfo(i)
+                            openSlideInfo(i);
                         }
                     });
                 }
