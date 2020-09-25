@@ -74,7 +74,7 @@
 }
 
 .formula-item.formula-slider__slide {
-    flex:0 0 33% !important;
+    flex: 0 0 33% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -87,7 +87,7 @@
 }
 
 .formula-item.formula-slider__slide.active .formula-item__icon-inner {
-    background: linear-gradient(90deg,#f48922 0,#ffb015 100%);
+    background: linear-gradient(90deg, #f48922 0, #ffb015 100%);
 }
 
 .formula-item.formula-slider__slide.active .formula-item-popup {
@@ -108,13 +108,29 @@
     right: 0 !important;
 }
 
+@media (max-width: 1090px) {
+    .transparency-slider-wrap {
+        display: flex;
+        overflow: hidden;
+    }
+
+    .transparency-slider.row {
+        display: flex !important;
+        flex-wrap: inherit !important;
+    }
+
+    /* .transparency-item {
+        margin-left: 1% !important;
+    } */
+}
+
 @media (max-width: 564px) {
     .formula-slider {
         transform: translateX(-100%);
     }
 
     .formula-item.formula-slider__slide {
-        flex:0 0 100% !important;
+        flex: 0 0 100% !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;

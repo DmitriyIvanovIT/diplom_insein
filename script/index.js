@@ -8,6 +8,7 @@ import showLater from './module/showLater.js';
 import sliderFormula from './module/sliderFormula.js';
 import repairSlider from './module/repairSlider.js';
 import sliderPortfolio from './module/sliderPortfolio.js';
+import documents from './module/documents.js';
 
 openPhone();
 toggleMenu();
@@ -20,6 +21,7 @@ showLater();
 sliderFormula();
 repairSlider();
 sliderPortfolio();
+documents();
 
 window.addEventListener('resize', () => {
     toggleMenu();
