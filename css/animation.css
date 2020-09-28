@@ -111,6 +111,7 @@
 .problems .problems-item__icon:hover .svg-wrap {
     transform: rotate(45deg);
 }
+
 .problems .problems-item__icon:hover .problems-item__icon-inner {
     opacity: 1;
 }
@@ -122,12 +123,12 @@
 
 .rotate.problems-item-popup:before {
     content: '';
-    transform: rotate(180deg)!important;
+    transform: rotate(180deg) !important;
 }
 
 .rotate.problems-item-popup-1:before {
     content: '';
-    transform: rotate(0)!important;
+    transform: rotate(0) !important;
 }
 
 @media (max-width: 1090px) {
@@ -143,7 +144,7 @@
 }
 
 @media (max-width: 1024px) {
-    .problems-item.problems-slider__slide{
+    .problems-item.problems-slider__slide {
         opacity: 0;
     }
 
@@ -154,9 +155,20 @@
     .problems-item.problems-slider__slide.active-item {
         opacity: 1;
     }
+
+    .transparency-slider-wrap {
+        width: 64%;
+        margin: auto;
+        margin-top: 100px;
+
+    }
 }
 
-@media (max-width: 564px) {
+@media (max-width: 575px) {
+    .transparency-slider-wrap {
+        width: 100%;
+
+    }
     .formula-slider {
         transform: translateX(-100%);
     }

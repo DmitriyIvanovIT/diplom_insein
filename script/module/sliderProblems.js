@@ -1,7 +1,6 @@
 const sliderProblems = () => {
     const problemsSlider = document.querySelector('.problems-slider'),
     problemsItem = document.querySelectorAll('.problems-item.problems-slider__slide');
-    console.log(problemsItem);
     
     let count = 0,
     maxCount = problemsItem.length - 1,

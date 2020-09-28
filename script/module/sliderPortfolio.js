@@ -1,5 +1,3 @@
-import slider from './slider.js';
-
 const sliderPortfolio = () => {
     const desctopVersion = () => {
             const portfolioSlider = document.querySelector('.portfolio-slider.mobile-hide'),

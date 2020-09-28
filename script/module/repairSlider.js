@@ -1,116 +1,105 @@
 const repairSlider = () => {
-    const prevSlide = document.getElementById('repair-types-arrow_left'),
-        nextSlide = document.getElementById('repair-types-arrow_right'),
-        repairTypesSlider = document.querySelector('.repair-types-slider'),
-        typesRepair = repairTypesSlider.querySelectorAll('.repair-types-slider>div'),
-        repairCounter = document.getElementById('repair-counter'),
-        sliderCurrent = repairCounter.querySelector('.slider-counter-content__current'),
-        sliderTotal = repairCounter.querySelector('.slider-counter-content__total'),
-        navListRepair = document.querySelector('.nav-list-repair'),
-        navItem = navListRepair.querySelectorAll('.repair-types-nav__item');
+    const formulaSlider = document.querySelector('.repair-types-slider');
+    let sliderTypeRepair = formulaSlider.querySelector('.types-repair1');
+    let formulaSliderSlide = sliderTypeRepair.querySelectorAll('.repair-types-slider__slide');
+    const wrap = document.querySelector('.repair-types-slider-wrap');
+    const repairTypesNavItem = document.querySelectorAll('.repair-types-nav__item');
+    const repairCounter = document.getElementById('repair-counter');
+    const sliderCounterContentCurrent = repairCounter.querySelector('.slider-counter-content__current');
+    const sliderCounterContentTotal = repairCounter.querySelector('.slider-counter-content__total');
+    const repairTypesTab = document.querySelector('.repair-types-tab');
+    const navListRepair = document.querySelector('.nav-list-repair');
+    sliderCounterContentTotal.textContent = formulaSliderSlide.length;
+    let marginCount = 0;
+    let typeRepair = 1;
+    let currentSlide = 0;
+    let interval;
 
-    const activeSlider = selector => {
-        typesRepair.forEach(slider => slider.style.display = 'none');
-        selector.style.display = '';
-
-        const slide = selector.querySelectorAll('.repair-types-slider__slide');
-
-        sliderTotal.textContent = slide.length;
-
-        let count = 0,
-            slideHeight = slide[0].offsetHeight;
-
-        const carousel = () => {
-            selector.style.transform = `translateY(-${count*slideHeight}px)`;
-            sliderCurrent.textContent = count + 1;
-        };
-
-        carousel();
-        
-        prevSlide.addEventListener('click', () => {
-            count--; 
-            if (count < 0) {
-                count = slide.length - 1;
-            }
-            carousel();
-        });
-        nextSlide.addEventListener('click', () => {
-            count++; 
-            if (count > (slide.length - 1)) {
-                count = 0;
-            }
-            carousel();
-        });
-
-    };
-
-    activeSlider(typesRepair[0]);
-
-    if (window.screen.width > 1024) {
-        navListRepair.transform = '';
-        navListRepair.addEventListener('click', event => {
-            let target = event.target;
-    
-            if (target.closest('.repair-types-nav__item')) {
-                target = target.closest('.repair-types-nav__item');
-                navItem.forEach((item, i) => {
-                    if (item === target) {
-                        item.classList.add('active');
-                        activeSlider(typesRepair[i]);
-                    } else {
-                        item.classList.remove('active');
-                    }
-                    
-                });
-            }
-        });
-    } else {
-        const prevButton = document.getElementById('nav-arrow-repair-left_base'),
-        nextButton = document.getElementById('nav-arrow-repair-right_base');
-        
-        let count = 0,
-        driveSlider = 0,
-        maxDrive = 0; 
-        navItem.forEach(item => {
-            maxDrive += (item.offsetWidth + 10);
-        });
-
-        const drivesSlide = () => {
-            navItem.forEach((item, i) => {
-                if (i === count) {
-                    item.classList.add('active');
-                    activeSlider(typesRepair[i]);
+    repairTypesTab.addEventListener('click', event => {
+        const target = event.target;
+        if (target.closest('#nav-arrow-repair-right_base')) {
+            if (marginCount < 850) {
+                if (marginCount !== 600) {
+                    marginCount += 200;
                 } else {
-                    item.classList.remove('active');
+                    marginCount += 250;
                 }
-                
-            });
-            navListRepair.style.transform = `translateX(-${driveSlider}px)`;
-        };
+                navListRepair.style.transform = `translateX(-${marginCount}px)`;
+            }
+        }
 
-        prevButton.addEventListener('click', () => {
-            driveSlider -= (navItem[count].offsetWidth + 10);
-            if (driveSlider < 0) {
-                driveSlider = 0;
+        if (target.closest('#nav-arrow-repair-left_base')) {
+            if (marginCount > 0) {
+                if (marginCount !== 850) {
+                    marginCount -= 200;
+                } else {
+                    marginCount -= 250;
+                }
+                navListRepair.style.transform = `translateX(-${marginCount}px)`;
             }
+        }
+    });
 
-            count--; 
-            if (count < 0) {
-                count = navItem.length - 1;
-                driveSlider = maxDrive - navItem[navItem.length - 1].offsetWidth;
+    document.body.addEventListener('click', (event) => {
+        const item = event.target;
+        if (item.closest('.repair-types-nav__item')) {
+            document.querySelector('.nav-wrap-repair').querySelector('.active').classList.remove('active');
+            item.classList.add('active');
+            typeRepair = item.classList[2][23];
+            sliderTypeRepair.style.display = 'none';
+            sliderTypeRepair = formulaSlider.querySelector(`.types-repair${typeRepair}`);
+            sliderTypeRepair.style.display = 'block';
+            formulaSliderSlide = sliderTypeRepair.querySelectorAll('.repair-types-slider__slide');
+            currentSlide = 0;
+            sliderCounterContentCurrent.textContent = currentSlide + 1;
+            sliderCounterContentTotal.textContent = formulaSliderSlide.length;
+        }
+    });
+
+    wrap.addEventListener('click', event => {
+        event.preventDefault();
+        const target = event.target;
+        if (target.closest('#repair-types-arrow_right')) {
+            currentSlide++;
+            sliderCounterContentCurrent.textContent = currentSlide + 1;
+            if (currentSlide > formulaSliderSlide.length - 1) {
+                currentSlide = 0;
+                sliderCounterContentCurrent.textContent = currentSlide + 1;
             }
-            drivesSlide();
-        });
-        nextButton.addEventListener('click', () => {
-            driveSlider += navItem[count].offsetWidth + 10;
-            count++; 
-            if (count > (navItem.length - 1)) {
-                count = 0;
-                driveSlider = 0;
+        } else if (target.closest('#repair-types-arrow_left')) {
+            currentSlide--;
+            if (currentSlide < 0) {
+                currentSlide = formulaSliderSlide.length - 1;
+                sliderCounterContentCurrent.textContent = currentSlide + 1;
             }
-            drivesSlide();
+            sliderCounterContentCurrent.textContent = currentSlide + 1;
+        }
+
+        
+        formulaSliderSlide.forEach((slide, i) => {
+            if (i === currentSlide) {
+                slide.style.display = 'block';
+            } else {
+                slide.style.display = 'none';
+            }
         });
-    }
-};
+        
+    });
+
+    document.body.addEventListener('mouseover', event => {
+        const target = event.target;
+        if (target.closest('#repair-types-arrow_right') || event.target.closest('#repair-types-arrow_left') ||
+            target.closest('.repair-types-nav__item')) {
+        }
+    });
+
+    document.body.addEventListener('mouseout', event => {
+        const target = event.target;
+        if (event.target.closest('#repair-types-arrow_right') || event.target.closest('#repair-types-arrow_left') ||
+            target.closest('.repair-types-nav__item')) {
+        }
+    });
+
+}
 
 export default repairSlider;
