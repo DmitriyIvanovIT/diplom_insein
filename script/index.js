@@ -18,6 +18,7 @@ import accordion from './module/acord.js';
 import sliderPortfolio from './module/sliderPortfolio.js';
 import reviews from './module/reviews.js';
 import scheme from './module/scheme.js';
+import partners from './module/partners.js';
 
 openPhone();
 toggleMenu();
@@ -39,6 +40,7 @@ accordion();
 sliderPortfolio();
 reviews();
 scheme();
+partners();
 
 window.addEventListener('resize', () => {
     toggleMenu();
@@ -49,4 +51,5 @@ window.addEventListener('resize', () => {
     accordion();
     reviews();
     scheme();
+    partners();
 });

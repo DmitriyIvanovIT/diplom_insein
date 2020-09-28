@@ -131,6 +131,20 @@
     transform: rotate(0) !important;
 }
 
+.wrapper {
+    overflow: hidden;
+}
+
+.partners-slider {
+    display: flex;
+    flex-direction: row !important;
+}
+
+.partners-slider__slide {
+    max-width: 100% !important;
+    flex: 0 0 33%;
+}
+
 @media (max-width: 1090px) {
     .transparency-slider-wrap {
         display: flex;
@@ -185,5 +199,9 @@
 
     .formula-slider .formula-item-popup-05:before {
         top: -61px;
+    }
+
+    .partners-slider__slide {
+        flex: 0 0 100%;
     }
 }
