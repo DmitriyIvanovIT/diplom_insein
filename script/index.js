@@ -17,6 +17,7 @@ import addFullPriceList from './module/fullPriceList.js';
 import accordion from './module/acord.js';
 import sliderPortfolio from './module/sliderPortfolio.js';
 import reviews from './module/reviews.js';
+import scheme from './module/scheme.js';
 
 openPhone();
 toggleMenu();
@@ -37,10 +38,15 @@ addFullPriceList();
 accordion();
 sliderPortfolio();
 reviews();
+scheme();
 
 window.addEventListener('resize', () => {
     toggleMenu();
     repairSlider();
     designs();
     sliderPortfolio();
+    addFullPriceList();
+    accordion();
+    reviews();
+    scheme();
 });

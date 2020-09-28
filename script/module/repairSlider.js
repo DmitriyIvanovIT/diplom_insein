@@ -13,7 +13,7 @@ const repairSlider = () => {
     let marginCount = 0;
     let typeRepair = 1;
     let currentSlide = 0;
-    let interval;
+
 
     repairTypesTab.addEventListener('click', event => {
         const target = event.target;
@@ -85,21 +85,6 @@ const repairSlider = () => {
         });
         
     });
-
-    document.body.addEventListener('mouseover', event => {
-        const target = event.target;
-        if (target.closest('#repair-types-arrow_right') || event.target.closest('#repair-types-arrow_left') ||
-            target.closest('.repair-types-nav__item')) {
-        }
-    });
-
-    document.body.addEventListener('mouseout', event => {
-        const target = event.target;
-        if (event.target.closest('#repair-types-arrow_right') || event.target.closest('#repair-types-arrow_left') ||
-            target.closest('.repair-types-nav__item')) {
-        }
-    });
-
 }
 
 export default repairSlider;
