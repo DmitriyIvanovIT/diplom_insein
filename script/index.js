@@ -23,6 +23,20 @@ import scheme from './module/scheme';
 import partners from './module/partners';
 import carouselSlider from './module/carouselSlider';
 import popupDesigns from './module/popupDesigns';
+import 'element-remove-polyfill';
+
+import "@babel/polyfill";
+import 'nodelist-foreach-polyfill';
+import elementClosest from 'element-closest';
+import 'formdata-polyfill';
+import 'fetch-polyfill';
+import 'parent-node-prepend-polyfill';
+import 'append';
+import 'js-polyfills';
+
+const Promise = require('es6-promise').Promise;
+
+elementClosest(window);
 
 openPhone();
 toggleMenu();

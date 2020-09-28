@@ -61,7 +61,7 @@ const toggleMenu = () => {
          closeMenu();
          scrolling(event, itemLink);
       } else if (target.closest('.button-footer')) {
-         target = target.closest('.button-footer>a');
+         target = target.closest('.button-footer').querySelector('a');
          scrolling(event, target);
          popupMenuNavItem.forEach(item => item.classList.remove('active_menu'));
          popupMenuNavItem[0].classList.add('active_menu');
