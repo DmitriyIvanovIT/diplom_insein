@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 'use stict';
 
 import openPhone from './module/openPhone';
@@ -31,8 +32,6 @@ import elementClosest from 'element-closest';
 import 'formdata-polyfill';
 import 'fetch-polyfill';
 import 'parent-node-prepend-polyfill';
-import 'append';
-import 'js-polyfills';
 
 const Promise = require('es6-promise').Promise;
 

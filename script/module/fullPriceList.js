@@ -41,8 +41,6 @@ const addFullPriceList = () => {
         }
     });
 
-}
-
-
+};
 
 export default addFullPriceList;

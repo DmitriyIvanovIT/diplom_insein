@@ -14,7 +14,7 @@ const sliderFormula = () => {
     lastClone.innerHTML = formulaSliderSlide[formulaSliderSlide.length - 1].innerHTML;
     firstClone.innerHTML = formulaSliderSlide[0].innerHTML;
     formulaSlider.prepend(lastClone);
-    formulaSlider.append(firstClone);
+    formulaSlider.appendChild(firstClone);
 
     formulaSliderSlide = document.querySelectorAll('.formula-slider__slide');
 
