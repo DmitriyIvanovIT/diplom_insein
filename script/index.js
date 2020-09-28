@@ -16,6 +16,7 @@ import renderPopup from './module/renderPopup.js';
 import addFullPriceList from './module/fullPriceList.js';
 import accordion from './module/acord.js';
 import sliderPortfolio from './module/sliderPortfolio.js';
+import reviews from './module/reviews.js';
 
 openPhone();
 toggleMenu();
@@ -35,6 +36,7 @@ consultantion();
 addFullPriceList();
 accordion();
 sliderPortfolio();
+reviews();
 
 window.addEventListener('resize', () => {
     toggleMenu();
