@@ -1,139 +1,112 @@
 const designs = () => {
-    const designsSlider = document.querySelector('.designs-slider'),
-        sliders = document.querySelectorAll('.designs-slider>div'),
-        designsList = document.getElementById('designs-list'),
-        designTabs = designsList.querySelectorAll('.designs-nav__item'),
-        previewBlock = document.querySelectorAll('.preview-block'),
-        designsCounter = document.getElementById('designs-counter'),
-        designCurrent = designsCounter.querySelector('.slider-counter-content__current'),
-        designTottal = designsCounter.querySelector('.slider-counter-content__total');
+    const designsNavItemBase = document.querySelectorAll('.designs-nav__item_base');
+    const designsList = document.getElementById('designs-list');
+    const designsSlider = document.querySelector('.designs-slider');
+    const previewBlock = document.querySelectorAll('.preview-block');
+    const designsSliderWrap = document.getElementById('designs');
+    const designsCounter = document.getElementById('designs-counter');
+    const sliderCounterContentCurrent = designsCounter.querySelector('.slider-counter-content__current');
+    const sliderCounterContentTotal = designsCounter.querySelector('.slider-counter-content__total');
 
-    const desctopVersion = index => {
-            activateSlider(index);
-            previewBlock.forEach((item, i) => {
-                if (i === index) {
-                    item.classList.add('visible');
-                } else {
-                    item.classList.remove('visible');
-                }
-            });
+    let previewBlockItem = previewBlock[0].querySelectorAll('.preview-block__item-inner');
+    let designSlide = designsSlider.querySelector('.designs-slider__style1');
+    let designsSliderStyleSlide = designSlide.querySelectorAll('.designs-slider__style-slide');
+    let currentSlide = 0;
+    let marginCount = 0;
+    sliderCounterContentTotal.textContent = designsSliderStyleSlide.length;
 
-            changeSlide(sliders[index], index);
-
-        },
-        mobailVersion = () => {
-            let count = 0,
-            maxCount = 1,
-            length = 0;
-
-            // document.body.addEventListener('click', event => {
-            //     let target = event.target;
-                
-            //     // if (target.closest('.'))
-            // });
-        },
-        activateSlider = index => {
-            sliders.forEach((item, i) => {
-                if (i !== index) {
-                    item.style.display = 'none';
-                } else {
-                    item.style.display = '';
-                }
-            });
-        },
-        changeSlider = () => {
-            if (window.screen.width > 575) {
-                desctopVersion(0);
-                document.body.addEventListener('click', event => {
-                    let target = event.target;
-
-                    if (target.closest('.button_o.designs-nav__item.designs-nav__item_base')) {
-                        designTabs.forEach((item, i) => {
-                            if (item === target) {
-                                item.classList.add('active');
-                                desctopVersion(i);
-                            } else {
-                                item.classList.remove('active');
-                            }
-                        });
-                    }
+    designsNavItemBase.forEach((item, index) => {
+        if (index !== 0) {
+            designsSlider.querySelector(`.designs-slider__style${index + 1}`).style.display = 'none';
+        }
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            designsList.querySelector('.active').classList.remove('active');
+            item.classList.add('active');
+            designSlide.style.display = 'none';
+            designSlide = designsSlider.querySelector(`.designs-slider__style${index + 1}`);
+            designSlide.style.display = 'block';
+            designsSliderStyleSlide = designSlide.querySelectorAll('.designs-slider__style-slide');
+            designsSliderWrap.querySelector('.visible').classList.remove('visible');
+            previewBlock[index].classList.add('visible');
+            previewBlockItem = previewBlock[index].querySelectorAll('.preview-block__item-inner');
+            previewBlockItem.forEach((elem, index) => {
+                elem.removeEventListener('click', () => {
+                    prevSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
+                    currentSlide = index;
+                    nextSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
                 });
+            });
+            previewBlockItem = previewBlock[index].querySelectorAll('.preview-block__item-inner');
+            previewBlockItem.forEach((elem, index) => {
+                elem.addEventListener('click', () => {
+                    prevSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
+                    currentSlide = index;
+                    nextSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
+                });
+            });
+            sliderCounterContentTotal.textContent = designsSliderStyleSlide.length;
+            currentSlide = 0;
+            sliderCounterContentCurrent.textContent = currentSlide + 1;
+        });
+    });
+
+    const prevSlide = (elem, item, index) => {
+        elem[index].style.display = 'none';
+        item[index].classList.remove('preview_active');
+    };
+
+    const nextSlide = (elem, item, index) => {
+        elem[index].style.display = 'block';
+        item[index].classList.add('preview_active');
+    };
+
+    designsSliderWrap.addEventListener('click', event => {
+        event.preventDefault();
+        if (event.target.closest('#nav-arrow-designs_right')) {
+            if (marginCount < 700) {
+                marginCount += 140;
+                designsList.style.transform = `translateX(-${marginCount}px)`;
+            }
+        }
+
+        if (event.target.closest('#nav-arrow-designs_left')) {
+            if (marginCount > 0) {
+                marginCount -= 140;
+                designsList.style.transform = `translateX(-${marginCount}px)`;
+            }
+        }
+
+        prevSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
+        if
+
+        (event.target.closest('#design_right')) {
+            currentSlide++;
+            sliderCounterContentCurrent.textContent = currentSlide + 1;
+        } else if (event.target.closest('#design_left')) {
+            if (currentSlide === 0) {
+                currentSlide = designsSliderStyleSlide.length - 1;
+                sliderCounterContentCurrent.textContent = designsSliderStyleSlide.length;
             } else {
-                mobailVersion();
+                currentSlide--;
+                sliderCounterContentCurrent.textContent = currentSlide + 1;
             }
+        }
 
-        },
-        changeSlide = (slider, index) => {
-            const slide = slider.querySelectorAll('.designs-slider__style-slide'),
-                preview = previewBlock[index].querySelectorAll('.preview-block__item-inner');
-            let count = 0,
-                maxCount = slider.length - 1,
-                slideHeight = slide[0].offsetHeight;
+        if (currentSlide >= designsSliderStyleSlide.length) {
+            currentSlide = 0;
+            sliderCounterContentCurrent.textContent = currentSlide + 1;
+        }
+        nextSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
+    });
 
-            designTottal.textContent = slide.length;
-
-            const carousel = () => {
-                    slider.style.transform = `translateY(-${count * slideHeight}px)`;
-                    if (window.screen.width < 576) {
-                        designCurrent.textContent = count + 1;
-                    }
-                },
-                changeActivePreview = index => {
-                    preview.forEach((item, i) => {
-                        if (i === index) {
-                            item.classList.add('preview_active');
-                        } else {
-                            item.classList.remove('preview_active');
-                        }
-                    });
-                };
-
-            changeActivePreview(0);
-            carousel();
-
-            if (window.screen.width > 575) {
-                document.body.addEventListener('click', event => {
-                    let target = event.target;
-    
-                    if (target.closest('.preview-block__item-inner')) {
-                        target = target.closest('.preview-block__item-inner');
-                        preview.forEach((item, i) => {
-                            if (item === target) {
-                                count = i;
-                                changeActivePreview(i);
-                                carousel();
-                            }
-                        });
-                    }
-                });
-            } else if (window.screen.width < 576) {
-                document.body.addEventListener('click', event => {
-                    const target = event.target;
-                    console.log(target);
-
-                    if (target.closest('#design_left')) {
-                        count--;
-                        if (count < 0) {
-                            count = maxCount;
-                        }
-
-                        carousel();
-                    }
-
-                    if (target.closest('#design_right')) {
-                        count++;
-                        if (count > maxCount) {
-                            count = 0;
-                        }
-
-                        carousel();
-                    }
-                });  
-            }
-            
-        };
-
-    changeSlider();
+    previewBlockItem.forEach((elem, index) => {
+        elem.addEventListener('click', () => {
+            prevSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
+            currentSlide = index;
+            nextSlide(designsSliderStyleSlide, previewBlockItem, currentSlide);
+        });
+    });
 };
 
 export default designs;

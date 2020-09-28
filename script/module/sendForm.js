@@ -12,33 +12,35 @@ const sendForm = () => {
     };
 
     const showError = (form, error) => {
-        form.insertAdjacentHTML('beforebegin', `
+        let el = form.parentElement.querySelector('.form-alarm-msg');
+
+        if (el === null) {
+            form.insertAdjacentHTML('beforebegin', `
             <div class="form-alarm-msg" style="font-size: 7; color: red; width: 350px; ">
             ${error}.</div>`);
 
-        form.querySelectorAll('input').forEach((item) => {
-            item.value = '';
-        })
+            el = form.parentElement.querySelector('.form-alarm-msg');
 
-        setTimeout(() => {
-            const el = form.parentElement.querySelectorAll('.form-alarm-msg');
-            el.remove();
-        }, 3000);
+            setTimeout(() => {
+                el.remove();
+            }, 3000);
+        }
     };
 
     const showAlarm = (form) => {
-        form.insertAdjacentHTML('beforebegin', `
+        let el = form.parentElement.querySelector('.form-alarm-msg');
+
+        if (el === null) {
+            form.insertAdjacentHTML('beforebegin', `
             <div class="form-alarm-msg" style="font-size: 7; color: red; width: 350px; ">
             Пожалуйста, проверьте номер и согласитесь с политикой конфиденциальности!</div>`);
 
-        form.querySelectorAll('input').forEach((item) => {
-            item.value = '';
-        })
+            el = form.parentElement.querySelector('.form-alarm-msg');
 
-        setTimeout(() => {
-            const el = form.parentElement.querySelector('.form-alarm-msg');
-            el.remove();
-        }, 3000);
+            setTimeout(() => {
+                el.remove();
+            }, 3000);
+        };
     };
 
     forms.forEach(form => {
@@ -87,6 +89,7 @@ const sendForm = () => {
                             throw new Error('Произошла неизвестная ошибка. Пожалуйста, попробуйте позже.');
                         }
                         outputData();
+                        form.reset();
                     })
                     .catch((error) => {
                         showError(form, error);
@@ -95,7 +98,7 @@ const sendForm = () => {
                 showAlarm(form);
             }
         });
-    });  
+    });
 };
 
 export default sendForm;

@@ -1,43 +1,8 @@
-const documents = () => {
+const documents = (carousel) => {
     const transparencyItem = document.querySelectorAll('.transparency-item'),
-        transparencySlider = document.querySelector('.transparency-slider.row');
+    transparencySlider = document.querySelector('.transparency-slider.row');
 
-    const desctopVersion = () => {
-            transparencySlider.style.transform = '';
-            tabs();
-        },
-        mobailVersion = () => {
-            let count = 0,
-                maxCount = transparencyItem.length - 1,
-                widthSlide = transparencyItem[0].offsetWidth;
-
-            const carousel = () => {
-                transparencySlider.style.transform = `translateX(calc(-${count * widthSlide}px + 1%))`;
-            }
-
-            carousel();
-
-            document.body.addEventListener('click', event => {
-                const target = event.target;
-
-                if (target.closest('#transparency-arrow_right')) {
-                    count++;
-                    if (count > maxCount) {
-                        count = 0;
-                    }
-                } else if (target.closest('#transparency-arrow_left')) {
-                    count--;
-                    if (count < 0) {
-                        count = maxCount;
-                    }
-                }
-
-                carousel();
-            });
-
-            tabs();
-        },
-        tabs = () => {
+    const tabs = () => {
             const popupTransparency = document.querySelector('.popup-transparency'),
                 popupTransparencySlider = document.querySelectorAll('.popup-transparency-slider__slide'),
                 transparencyPopupCounter = document.getElementById('transparency-popup-counter'),
@@ -100,11 +65,17 @@ const documents = () => {
             });
         };
 
-    if (window.screen.width > 1090) {
-        desctopVersion();
-    } else {
-        mobailVersion();
+    if (window.screen.width > 1091) {
+        transparencySlider.style.transform = '';
     }
+
+    tabs();
+
+    carousel('.transparency-slider', '#transparency-arrow_right', '#transparency-arrow_left');
+
+    window.addEventListener('resize', () => {
+        carousel('.transparency-slider', '#transparency-arrow_right', '#transparency-arrow_left');
+    });
 
 };
 

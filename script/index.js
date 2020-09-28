@@ -21,6 +21,8 @@ import sliderPortfolio from './module/sliderPortfolio';
 import reviews from './module/reviews';
 import scheme from './module/scheme';
 import partners from './module/partners';
+import carouselSlider from './module/carouselSlider';
+import popupDesigns from './module/popupDesigns';
 
 openPhone();
 toggleMenu();
@@ -32,7 +34,7 @@ togglePopupPtivacy();
 showLaterFormula();
 sliderFormula();
 repairSlider();
-documents();
+documents(carouselSlider);
 showLaterProblems();
 sliderProblems();
 renderPopup();
@@ -43,6 +45,8 @@ sliderPortfolio();
 reviews();
 scheme();
 partners();
+designs();
+popupDesigns();
 
 window.addEventListener('resize', () => {
     toggleMenu();
@@ -54,4 +58,7 @@ window.addEventListener('resize', () => {
     reviews();
     scheme();
     partners();
+    documents(carouselSlider);
+    designs(); 
+    popupDesigns();
 });
