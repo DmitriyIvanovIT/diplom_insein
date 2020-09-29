@@ -71,4 +71,5 @@ window.addEventListener('resize', () => {
     documents(carouselSlider);
     designs(); 
     popupDesigns();
+    sliderProblems();
 });
