@@ -1,15 +1,14 @@
 const sendForm = () => {
     const popupConsultation = document.querySelector('.popup-consultation');
     const forms = document.querySelectorAll('form');
-    const postData = body => {
-        return fetch('./server.php', {
+    const postData = body => fetch('./server.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
         });
-    };
+
 
     const showError = (form, error) => {
         let el = form.parentElement.querySelector('.form-alarm-msg');
@@ -65,7 +64,7 @@ const sendForm = () => {
                 const outputData = () => {
                     const popupThank = document.querySelector('.popup-thank');
 
-                    popupConsultation.style = '';
+                    popupConsultation.removeAttribute('style');
                     popupThank.style.visibility = 'visible';
                     popupThank.addEventListener('click', event => {
                         if (!(event.target.closest('.feedback-wrap')) || event.target.classList.contains('close-thank')) {

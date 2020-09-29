@@ -1,6 +1,3 @@
-/* eslint-disable linebreak-style */
-'use stict';
-
 import openPhone from './module/openPhone';
 import toggleMenu from './module/toggleMenu';
 import togglePopupRepair from './module/togglePopupRepair';
